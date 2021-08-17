@@ -101,4 +101,7 @@ for i in range(m):
 f1.close()
 f2.close() 
 plt.plot(t,C_list)
+plt.xlabel("T")
+plt.ylabel("Concurence")
+plt.title("Concurence")
 plt.show()
