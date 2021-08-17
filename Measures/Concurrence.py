@@ -11,12 +11,12 @@ t = np.arange(0,30,0.003)
 #? --------------------------------------------------------------------------------
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
 for i in range(m):
-    #? ----------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------
     # read data
-    x = f1.readline().split("              ") # read data
+    x = f1.readline().split("     ") # read data
     rho  = []
     for i in x: # delete space in number
-        x = re.sub("  ", "", i)
+        x = re.sub(" ", "", i)
         rho.append(x)
     rho.pop(0) # delete first column
     rho.pop(32)# delete last column
