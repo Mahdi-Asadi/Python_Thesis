@@ -1,6 +1,7 @@
 from scipy import linalg
 import numpy as np
 from math import sqrt
+import matplotlib.pyplot as plt
 import re
 #? --------------------------------------------------------------------------------
 f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" # address file for input
@@ -8,6 +9,7 @@ f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurrence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
 t = np.arange(0,30,0.003)
+C_list = []
 #? --------------------------------------------------------------------------------
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
 for i in range(m):
@@ -20,7 +22,7 @@ for i in range(m):
         rho.append(x)
     rho.pop(0) # delete first column
     rho.pop(32)# delete last column
-    print("rho = ", rho)
+    # print("rho = ", rho)
     #? ----------------------------------------------------------------------------
     # convert to complex number
     i = 0
@@ -79,8 +81,10 @@ for i in range(m):
     c_rho = round(c_rho,5)
     if c_rho < 0:
         rho_val_list.append(0)
+        C_list.append(0)
     else:
         rho_val_list.append(c_rho)
+        C_list.append(c_rho)
     #? ----------------------------------------------------------------------------
     # convert to str
     rho_val_list_str = [] 
@@ -96,3 +100,5 @@ for i in range(m):
     #? ----------------------------------------------------------------------------
 f1.close()
 f2.close() 
+plt.plot(t,C_list)
+plt.show()
