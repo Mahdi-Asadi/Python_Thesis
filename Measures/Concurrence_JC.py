@@ -6,7 +6,7 @@ import re
 #? --------------------------------------------------------------------------------
 f_in = "E:\\1\\JC_Model_Heisenberg_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
-f_out = "E:\\1\\Concurrence.txt" # address file for output
+f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
 t = np.arange(0,30,0.003)
 C_list = []
@@ -106,4 +106,7 @@ for i in range(m):
 f1.close()
 f2.close() 
 plt.plot(t,C_list)
+plt.xlabel("T")
+plt.ylabel("Concurence")
+plt.title("Concurence")
 plt.show()
