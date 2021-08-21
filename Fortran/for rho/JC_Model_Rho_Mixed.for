@@ -5,7 +5,7 @@
 
 	  REAL h,x,y(N),dydx(N),yout(N)
       EXTERNAL derivs
-      open(10,file='e:\1\JC_Model_Heisenberg_Mixed.txt')  ! Output program results
+      open(10,file='e:\1\JC_Model_Rho_Mixed.txt')  ! Output program results
       ! -------------- initial conditons --------------
       x1=0.0                      ! x1 = t1
 	  x2=30                       ! x2 = t2

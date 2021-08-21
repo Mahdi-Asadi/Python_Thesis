@@ -5,7 +5,7 @@
 
       REAL h,x,y(N),dydx(N),yout(N)
       EXTERNAL derivs
-	  open(10,file='e:\1\Rabi_Model_for rho_pure.txt') ! Output program results 
+	  open(10,file='e:\1\Rabi_Model_Rho_pure.txt') ! Output program results 
 	  ! open(20,file='e:\1\c.txt')
 
       x1=0.0           ! x1 = t1

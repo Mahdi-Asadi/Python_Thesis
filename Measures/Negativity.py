@@ -1,6 +1,7 @@
 from functools import partial
 from scipy import linalg
 import numpy as np
+import matplotlib.pyplot as plt
 import re
 def par_trs_1(y): # input is a 4*4 matrix
 
@@ -13,7 +14,7 @@ def par_trs_1(y): # input is a 4*4 matrix
     y_1_2 = y_swap
     
     _1 = np.concatenate((y_1_1,y_1_2),axis = 1) #  accession,axis = 1 --->
-    _2 = np.concatenate((y_2_1,y_2_2),axis = 1) 
+    _2 = np.concatenate((y_2_1,y_2_2),axis = 1)
 
     _all_1 = np.concatenate((_1,_2)) # accession,axis = 0 ||
     return _all_1
@@ -35,14 +36,18 @@ def par_trs_2(y): # input is a 4*4 matrix
     return _all_2
 #? --------------------------------------------------------------------------------
 
-f_in = "E:\\1\\JC_Model_Heisenberg_Mixed.txt" # address file for input
+f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out_1 = "E:\\1\\partial_transpose_type_1 eigenvalues.txt" # address file for partial_transpose_type_1 eigenvalues
 f2 = open(f_out_1,"w+") # open output file
 f_out_2 = "E:\\1\\partial_transpose_type_2 eigenvalues.txt" # address file for partial_transpose_type_2 eigenvalues
 f3 = open(f_out_2,"w+") # open output file
-#? --------------------------------------------------------------------------------
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
+n = 30/m
+t = np.arange(0,30,n)
+p_t_1 = []
+p_t_2 = []
+#? --------------------------------------------------------------------------------
 for i in range(m):
     #? ----------------------------------------------------------------------------
     # read data
@@ -118,11 +123,13 @@ for i in range(m):
     # print(y_value_real_str)
     # #? ---------------------------------------------------------------------------
     # write in output file for partial_transpose_type_1 eigenvalue
+    p_t_1.append(rho_val_1_str[0])
     for i in rho_val_1_str: 
         f2.write(i)
         f2.write("     ")
     f2.write("\n")
     # write in output file for partial_transpose_type_2 eigenvalue
+    p_t_2.append(rho_val_2_str[0])
     for i in rho_val_2_str: 
         f3.write(i)
         f3.write("     ")
@@ -131,3 +138,9 @@ for i in range(m):
 f1.close()
 f2.close()
 f3.close() 
+plt.plot(t,p_t_1)
+plt.plot(t,p_t_2)
+plt.xlabel("T")
+plt.ylabel("Negativity")
+plt.title("Negativity")
+plt.show()
