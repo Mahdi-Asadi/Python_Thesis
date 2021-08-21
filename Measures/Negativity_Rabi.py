@@ -36,7 +36,7 @@ def par_trs_2(y): # input is a 4*4 matrix
     return _all_2
 #? --------------------------------------------------------------------------------
 
-f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
+f_in = "E:\\1\\Rabi_Model_Rho_pure.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out_1 = "E:\\1\\partial_transpose_type_1 eigenvalues.txt" # address file for partial_transpose_type_1 eigenvalues
 f2 = open(f_out_1,"w+") # open output file
@@ -123,13 +123,14 @@ for i in range(m):
     # print(y_value_real_str)
     # #? ---------------------------------------------------------------------------
     # write in output file for partial_transpose_type_1 eigenvalue
-    p_t_1.append(rho_val_1_str[0])
+    p_t_1.append(rho_val_1[0])
+    # print(p_t_1)
     for i in rho_val_1_str: 
         f2.write(i)
         f2.write("     ")
     f2.write("\n")
     # write in output file for partial_transpose_type_2 eigenvalue
-    p_t_2.append(rho_val_2_str[0])
+    p_t_2.append(rho_val_2[0])
     for i in rho_val_2_str: 
         f3.write(i)
         f3.write("     ")
@@ -138,9 +139,10 @@ for i in range(m):
 f1.close()
 f2.close()
 f3.close() 
-plt.plot(t,p_t_1)
-plt.plot(t,p_t_2)
+plt.plot(t,p_t_1,label = "Type 1")
+plt.plot(t,p_t_2,label = "Type 2")
 plt.xlabel("T")
 plt.ylabel("Negativity")
 plt.title("Negativity")
+plt.legend(title = "Negativity")
 plt.show()

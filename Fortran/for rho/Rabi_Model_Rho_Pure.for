@@ -58,11 +58,10 @@
               Concurence = SQRT(G)
               trace_rho = y(1)+y(2)+y(11)+y(12)+y(21)+y(22)+y(31)+y(32)
 !	         et=y(1)*2*(y(3)+y(2)*y(4))
-      	     write(10,'(45(f20.4,2x))')x,y(1)+y(2),y(3)+y(4),y(5)+y(6)   ! (#(f10.4,2x)) == # -> number of outputs ; f10 -> serial number for output file
-     &         ,y(7)+y(8),y(9)+y(10),y(11)+y(12),y(13)+y(14),y(15)+y(16)
-     &         ,y(17)+y(18),y(19)+y(20),y(21)+y(22),y(23)+y(24),y(25)
-     &         +y(26),y(27)+y(28),y(29)+y(30),y(31)+y(32),S,G,Concurence
-     &          ,trace_rho ! Computational values to create in the file a.txt
+              write(10,'(48(f10.4,2x))')x,y(1),y(2),y(3),y(4),y(5),y(6)   ! (#(f10.4,2x)) == # -> number of outputs ; f10 -> serial number for output file
+     &         ,y(7),y(8),y(9),y(10),y(11),y(12),y(13),y(14),y(15),y(16)
+     &         ,y(17),y(18),y(19),y(20),y(21),y(22),y(23),y(24),y(25)
+     &         ,y(26),y(27),y(28),y(29),y(30),y(31),y(32),trace_rho! Computational values to create in the file a.txt
            end if
 	     do j=1,n
 	        y(j)=yout(j) !/sqrt((r11+r22))
@@ -83,7 +82,7 @@
       
 	  wa=1 ! atomic frequency  
 	  wp=0.6 ! field frequency 
-	  g=0.006 ! coupling strength; g =< (0.5)wp
+	  g=0.6 ! coupling strength; g =< (0.5)wp
       n_p=1  ! number of photons
       
       ! ----------------- Equations ------------------
