@@ -6,12 +6,13 @@ import re
 #? --------------------------------------------------------------------------------
 f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
-f_out = "E:\\1\\Concurrence.txt" # address file for output
+f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
-t = np.arange(0,30,0.003)
+m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
+n = 30/m
+t = np.arange(0,30,n)
 C_list = []
 #? --------------------------------------------------------------------------------
-m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
 for i in range(m):
     # ----------------------------------------------------------------------------
     # read data

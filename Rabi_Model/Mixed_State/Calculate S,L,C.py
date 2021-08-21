@@ -29,7 +29,7 @@ for i in range(m):
     rho_f = []
     for i in rho:
         rho_f.append(float(i))
-    # print(rho_f)
+    print(rho_f)
     rho = rho_f
     #? ----------------------------------------------------------------------------
     i = 0

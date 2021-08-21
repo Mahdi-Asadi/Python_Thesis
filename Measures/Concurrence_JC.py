@@ -8,10 +8,11 @@ f_in = "E:\\1\\JC_Model_Heisenberg_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
-t = np.arange(0,30,0.003)
+m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
+n = 30/m
+t = np.arange(0,30,n)
 C_list = []
 #? --------------------------------------------------------------------------------
-m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
 for i in range(m):
     #? ----------------------------------------------------------------------------
     # read data
@@ -27,7 +28,7 @@ for i in range(m):
     # convert to complex number
     i = 0
     c_rho = []
-    while i < 32: 
+    while i < 32:
         # print("i = ",i)
         a = float(rho[i])
         b = float(rho[i+1])
@@ -54,8 +55,8 @@ for i in range(m):
     # print("_3_ = ",_3_)
     #? ----------------------------------------------------------------------------
     # calculate eigenvalue and eigenvector
-    rho_val,rho_vec = linalg.eig(Xi) 
-    # print("y Eigenvalue = ",y_value)
+    rho_val,rho_vec = linalg.eig(Xi)
+    # print("y Eigenvalue = ",rho_val)
     # print ("y Eigenvector = ",y_vector)
     #? ----------------------------------------------------------------------------
     # convert to list and real number
@@ -67,11 +68,11 @@ for i in range(m):
         v = round(i,4)
         rho_val_real.append(v)
     rho_val_list = rho_val_real
-    # print("rho_value_list = ",rho_value_list)
-    # print("rho_value_real = ",rho_value_real)
+    # print("rho_val_list = ",rho_val_list)
+    # print("rho_val_real = ",rho_value_real)
     #? ----------------------------------------------------------------------------
     # sort of max to min
-    rho_val_list.sort(reverse=True)   
+    rho_val_list.sort(reverse=True)
     # print("y_value_real = ",rho_value_list)
     #? ----------------------------------------------------------------------------
     # calculate c(rho)
@@ -89,13 +90,13 @@ for i in range(m):
         C_list.append(c_rho)
     #? ----------------------------------------------------------------------------
     # convert to str
-    rho_val_list_str = [] 
-    for i in rho_val_list: 
+    rho_val_list_str = []
+    for i in rho_val_list:
         rho_val_list_str.append(str(i))
     # print(y_value_real_str)
     #? ---------------------------------------------------------------------------
     # write in output file
-    for i in rho_val_list_str: 
+    for i in rho_val_list_str:
         f2.write(i)
         f2.write("      ")
     
@@ -104,7 +105,7 @@ for i in range(m):
     f2.write("\n")
     #? ----------------------------------------------------------------------------
 f1.close()
-f2.close() 
+f2.close()
 plt.plot(t,C_list)
 plt.xlabel("T")
 plt.ylabel("Concurence")

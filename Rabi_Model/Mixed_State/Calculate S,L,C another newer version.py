@@ -37,7 +37,7 @@ for i in range(m):
         d = complex(a,b)
         c_y = c_y + [d]
         i = i + 2
-    # print(c_y)
+    print(c_y)
     #? ----------------------------------------------------------------------------
     #! Von-Neuman Entropy
     c_i = []
@@ -49,7 +49,7 @@ for i in range(m):
     c_i.append((rho[17]+rho[27]))
     c_i.append((rho[20]+rho[30]))
     c_i.append((rho[21]+rho[31]))
-    print("c_i = ",c_i)
+    # print("c_i = ",c_i)
 #     c_y = []
 #     while i < 9: #! convert to complex number
 #         a = float(0)
