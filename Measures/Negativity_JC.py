@@ -43,8 +43,9 @@ f2 = open(f_out_1,"w+") # open output file
 f_out_2 = "E:\\1\\partial_transpose_type_2 eigenvalues.txt" # address file for partial_transpose_type_2 eigenvalues
 f3 = open(f_out_2,"w+") # open output file
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
-n = 30/m
-t = np.arange(0,30,n)
+n = 1/m
+print(n)
+t = np.arange(0,1,n)
 p_t_1 = []
 p_t_2 = []
 #? --------------------------------------------------------------------------------

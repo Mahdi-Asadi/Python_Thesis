@@ -4,13 +4,13 @@ from math import sqrt
 import matplotlib.pyplot as plt
 import re
 #? --------------------------------------------------------------------------------
-f_in = "E:\\1\\JC_Model_Heisenberg_Mixed.txt" # address file for input
+f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
-n = 30/m
-t = np.arange(0,30,n)
+n = 1/m
+t = np.arange(0,1,n)
 C_list = []
 #? --------------------------------------------------------------------------------
 for i in range(m):

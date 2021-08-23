@@ -8,7 +8,7 @@
       open(10,file='e:\1\JC_Model_Rho_Mixed.txt')  ! Output program results
       ! -------------- initial conditons --------------
       x1=0.0                      ! x1 = t1
-	  x2=30                       ! x2 = t2
+	  x2=1                       ! x2 = t2
       y(1)=  0.75
       y(2)=  0
       y(3)=  0
@@ -77,7 +77,7 @@
 	  wa=1      ! atomic frequency  
 	  wp=0.6      ! field frequency
 	  g=0.9   ! coupling strength 
-      n_p = 2     ! number of photons
+      n_p = 10     ! number of photons
       
       ! ----------------- Equations ------------------    
    
