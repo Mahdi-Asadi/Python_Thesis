@@ -26,11 +26,9 @@ tf = 30
 h = tf/m
 tspan = np.arange(ti,tf,h)
 print(h)
-for i in tspan:
-
-    v = RK45(du_dx,t0 = i,y0 = y_0,t_bound=i,dt=0.03,max_step=0.04) # 4 answer of dydx_1,...,dydx_4
+v = RK45(du_dx,t0 = i,y0 = y_0,t_bound=i,dt=0.03,max_step=0.04) # 4 answer of dydx_1,...,dydx_4
 # print(type(v))
-    print(v.y)
+print(v.y)
 # print("v.t[0] = ",v.t[0])
 # print(len(v.t))
 # print("------------------")
