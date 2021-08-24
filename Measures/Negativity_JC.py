@@ -36,16 +36,17 @@ def par_trs_2(y): # input is a 4*4 matrix
     return _all_2
 #? --------------------------------------------------------------------------------
 
-f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
+f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out_1 = "E:\\1\\partial_transpose_type_1 eigenvalues.txt" # address file for partial_transpose_type_1 eigenvalues
 f2 = open(f_out_1,"w+") # open output file
 f_out_2 = "E:\\1\\partial_transpose_type_2 eigenvalues.txt" # address file for partial_transpose_type_2 eigenvalues
 f3 = open(f_out_2,"w+") # open output file
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
-n = 1/m
-print(n)
-t = np.arange(0,1,n)
+ti = 0
+tf = 10
+dt = tf/m
+t = np.arange(ti,tf,dt)
 p_t_1 = []
 p_t_2 = []
 #? --------------------------------------------------------------------------------
@@ -80,8 +81,8 @@ for i in range(m):
     partial_transpose_type_2 = par_trs_2(rho)
     #? ----------------------------------------------------------------------------
     # calculate eigenvalue and eigenvector
-    rho_val_pats_1,rho_vec_pats_1 = linalg.eigh(partial_transpose_type_1)
-    rho_val_pats_2,rho_vec_pats_2 = linalg.eigh(partial_transpose_type_2)
+    rho_val_pats_1,rho_vec_pats_1 = linalg.eig(partial_transpose_type_1)
+    rho_val_pats_2,rho_vec_pats_2 = linalg.eig(partial_transpose_type_2)
     # print("partial_transpose_type_1 = ",rho_val_pats_1)
     # print ("partial_transpose_type_2 = ",rho_val_pats_2)
     #? ----------------------------------------------------------------------------
@@ -124,14 +125,21 @@ for i in range(m):
     # print(y_value_real_str)
     # #? ---------------------------------------------------------------------------
     # write in output file for partial_transpose_type_1 eigenvalue
-    p_t_1.append(rho_val_1[0])
+    if rho_val_1[0]<0:
+        p_t_1.append(rho_val_1[0])
+    else:
+        p_t_1.append(0)
     # print(p_t_1)
     for i in rho_val_1_str: 
         f2.write(i)
         f2.write("     ")
     f2.write("\n")
     # write in output file for partial_transpose_type_2 eigenvalue
-    p_t_2.append(rho_val_2[0])
+    if rho_val_2[0]<0:
+        p_t_2.append(rho_val_2[0])
+    else:
+        p_t_2.append(0)
+
     for i in rho_val_2_str: 
         f3.write(i)
         f3.write("     ")
@@ -146,4 +154,5 @@ plt.xlabel("T")
 plt.ylabel("Negativity")
 plt.title("Negativity")
 plt.legend(title = "Negativity")
+plt.legend(title = "g = 0.1\n n = 5",loc = "upper right")
 plt.show()

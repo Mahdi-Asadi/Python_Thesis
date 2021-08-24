@@ -4,17 +4,20 @@ from math import sqrt
 import matplotlib.pyplot as plt
 import re
 #? --------------------------------------------------------------------------------
-f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
+f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
-n = 1/m
-t = np.arange(0,1,n)
+ti = 0
+tf = 10
+dt = tf/m
+t = np.arange(ti,tf,dt)
 C_list = []
 #? --------------------------------------------------------------------------------
 for i in range(m):
     #? ----------------------------------------------------------------------------
+    # print(i)
     # read data
     x = f1.readline().split("     ") # read data
     rho  = []
@@ -107,6 +110,7 @@ for i in range(m):
 f1.close()
 f2.close()
 plt.plot(t,C_list)
+plt.legend(title = "g = 0.3: g <= wp\n n = 1",loc = "upper right")
 plt.xlabel("T")
 plt.ylabel("Concurence")
 plt.title("Concurence")

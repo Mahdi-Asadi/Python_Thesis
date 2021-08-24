@@ -3,19 +3,19 @@ from scipy import linalg
 import numpy as np
 import re
 import matplotlib.pyplot as plt
-f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" #! address file for input
+f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" #! address file for input
 f1 = open(f_in,"r+")   #! open data file
 f_out_S = "E:\\1\\S_L_C.txt" #! Von-Neuman entropy address file for output
 f2 = open(f_out_S,"w+") #! open output file
 m = 10000 #! m = Number of divisions between x1 and x2 in the fortran program
-t = np.arange(0,2,0.0001)
+t = np.arange(0,40,0.004)
 
 s_list = [] # for plot s on based t
 l_list = [] # for plot l on based t
 c_list = [] # for plot c on based t
 for i in range(m):
     a = t[i]
-    print(a)
+    # print(a)
     #? ----------------------------------------------------------------------------
     x = f1.readline().split("     ") #! read data
     z  = []
@@ -88,7 +88,7 @@ for i in range(m):
 plt.plot(t,s_list,label = "Von Neuman Entropy")
 plt.plot(t,l_list,label = "Linear Entropy")
 # plt.plot(t,c_list,label = "Concurrence")
-plt.legend()
+plt.legend(title = "g = 0.2",loc = "upper right")
 plt.xlabel("T")
 plt.ylabel("Entanglement Measure")
 plt.show()
