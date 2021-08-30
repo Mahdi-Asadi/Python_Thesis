@@ -3,11 +3,14 @@ import numpy as np
 from math import sqrt
 import matplotlib.pyplot as plt
 import re
+import cmath
 #? --------------------------------------------------------------------------------
 f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
+f3_out = "E:\\1\\aaa.txt" # address file for output
+f3 = open(f3_out,"w+") # open output file
 m = 10000 # m = Number of divisions between x1 and x2 in the fortran program
 ti = 0
 tf = 10
@@ -57,6 +60,9 @@ for i in range(m):
     Xi = np.dot(_2_,sigma_y)# rho.sigma_y. rho*. sigma_y
     # print("_3_ = ",_3_)
     #? ----------------------------------------------------------------------------
+    # print("Xi = \n",Xi)
+    f3.write(str(Xi))
+    f3.write("\n\n")
     # calculate eigenvalue and eigenvector
     rho_val,rho_vec = linalg.eig(Xi)
     # print("y Eigenvalue = ",rho_val)
@@ -81,9 +87,12 @@ for i in range(m):
     # calculate c(rho)
     # print("np.sqrt(rho_val_list[0]) =",(rho_val_list[0]),"np.sqrt(rho_val_list[1]) =",(rho_val_list[1])
     #     ,"np.sqrt(rho_val_list[2]) =",(rho_val_list[2]),"np.sqrt(rho_val_list[3]) =",(rho_val_list[3]))
-    c_rho = sqrt(rho_val_list[0])-sqrt(rho_val_list[1])-sqrt(rho_val_list[2])-sqrt(rho_val_list[3])
+    c_rho = cmath.sqrt(rho_val_list[0])- cmath.sqrt(rho_val_list[1])-\
+                + cmath.sqrt(rho_val_list[2])- cmath.sqrt(rho_val_list[3])
     # print("np.sqrt(rho_val_list[0]) =",sqrt(rho_val_list[0]),"np.sqrt(rho_val_list[1]) =",sqrt(rho_val_list[1])
     #     ,"np.sqrt(rho_val_list[2]) =",sqrt(rho_val_list[2]),"np.sqrt(rho_val_list[3]) =",sqrt(rho_val_list[3]),"c_rho = ",c_rho)
+    # print("c_rho = ", c_rho)
+    c_rho = c_rho.real
     c_rho = round(c_rho,5)
     if c_rho < 0:
         rho_val_list.append(0)

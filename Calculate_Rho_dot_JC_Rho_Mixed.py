@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.integrate import RK45
 f_out = "E:\\1\\P_rk4.txt" # address file for output
 f2 = open(f_out,"w+")
-def du_dx(x,y):
+def dy_dx1(x,y):
     wa=1      # atomic frequency  
     wp=0.6    # field frequency
     g=0.6    # coupling strength 
@@ -13,9 +13,17 @@ def du_dx(x,y):
     dydx_1= 0
     dydx_2= -C*y[5]-wp*y[3]
     dydx_3= -C*y[4]-wp*y[2] 
+    return [dydx_0,dydx_1,dydx_2,dydx_3]
+def dy_dx2(x,y):
+    wa=1      # atomic frequency  
+    wp=0.6    # field frequency
+    g=0.6    # coupling strength 
+    n_p = 1     # number of photons
+    C = np.sqrt(n_p+1) 
     dydx_4= -C*y[3]-wa*y[5]
     dydx_5= +C*y[2]+wa*[4]
     dydx_6= -(wa+wp)*y[7]
+    return [dydx1,dydx_4,dydx_5,dydx_6]
     dydx_7= +(wa+wp)*y[6]
     dydx_8= +C*y[17]+wp*y[9]
     dydx_9= -C*y[16]-wp*y[8]
@@ -51,7 +59,7 @@ tf = 30
 h = tf/m
 tspan = np.arange(ti,tf,h)
 print(h)
-v = RK45(du_dx,[0,30],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
+v = RK45(dy_dx,[0,30],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
 # print(type(v))
 # print(v.t)
 # print("v.t[0] = ",v.t[0])
