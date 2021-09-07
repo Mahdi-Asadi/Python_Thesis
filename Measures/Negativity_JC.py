@@ -36,7 +36,7 @@ def par_trs_2(y): # input is a 4*4 matrix
     return _all_2
 #? --------------------------------------------------------------------------------
 
-f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" # address file for input
+f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out_1 = "E:\\1\\partial_transpose_type_1 eigenvalues.txt" # address file for partial_transpose_type_1 eigenvalues
 f2 = open(f_out_1,"w+") # open output file
@@ -126,7 +126,7 @@ for i in range(m):
     # #? ---------------------------------------------------------------------------
     # write in output file for partial_transpose_type_1 eigenvalue
     if rho_val_1[0]<0:
-        p_t_1.append(rho_val_1[0])
+        p_t_1.append(abs(rho_val_1[0]))
     else:
         p_t_1.append(0)
     # print(p_t_1)
@@ -136,7 +136,7 @@ for i in range(m):
     f2.write("\n")
     # write in output file for partial_transpose_type_2 eigenvalue
     if rho_val_2[0]<0:
-        p_t_2.append(rho_val_2[0])
+        p_t_2.append(abs(rho_val_2[0]))
     else:
         p_t_2.append(0)
 
@@ -154,5 +154,5 @@ plt.xlabel("T")
 plt.ylabel("Negativity")
 plt.title("Negativity")
 plt.legend(title = "Negativity")
-plt.legend(title = "g = 0.1\n n = 5",loc = "upper right")
+plt.legend(title = "g = 0.2\n n = 5",loc = "upper right")
 plt.show()

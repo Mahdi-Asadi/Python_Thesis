@@ -110,7 +110,7 @@ for i in range(m):
 f1.close()
 f2.close()
 plt.plot(t,C_list)
-plt.legend(title = "g = 0.3: g <= wp\n n = 1",loc = "upper right")
+plt.legend(title = "g = 0.2\n n = 5",loc = "upper right")
 plt.xlabel("T")
 plt.ylabel("Concurence")
 plt.title("Concurence")
