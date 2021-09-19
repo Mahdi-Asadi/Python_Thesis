@@ -1,10 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 from scipy.integrate import solve_ivp
-f_out = "E:\\1\\P_rk4_1.txt" # address file for output
-f2 = open(f_out,"w+")
-f_out1 = "E:\\1\\P_rk4_2.txt" # address file for output
-f3 = open(f_out1,"w+")
+
 def dy_dx(x,y):
         wa=1      # atomic frequency  
         wp=0.6    # field frequency
@@ -50,30 +48,33 @@ def dy_dx(x,y):
                 dydx_23,dydx_24,dydx_25,dydx_26,dydx_27,\
                 dydx_28,dydx_29,dydx_30,dydx_31]
 
-y_0 = [0.08,0,0.06,0,0.5,0,0.03,0,0.06,0,0.29,0,0.12,0,\
-        0.16,0,0.05,0,0.13,0,0.21,0,0.07,0,0.03,0,0.16,0,0.04,0,0.42,0]# initial value
 
+
+y_0 = [0.08,0,0.06,0,0.5,0,0.03,0,0.06,0,0.29,0,0.12,0,
+        0.16,0,0.05,0,0.13,0,0.21,0,0.07,0,0.03,0,0.16,0,0.04,0,0.42,0]# initial value
 
 m = 1000
 ti = 0
 tf = 5
 h = tf/m
 tspan = np.arange(ti,tf,h)
+
 v = solve_ivp(dy_dx,[0,5],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
-print(type(v))
-for i in v:
-        f3.write(str(i))
-        f3.write("\n")
-for i in v.y[2,:]:
-        f2.write(str(i))
-        f2.write("\n")
-# for i in v.y[:,2]:
-#         f2.write(str(i))
-#         f2.write("\n")
-# f2.write(str(v.y[2,:]))
-# f2.write("\n")
-# plt.plot(v.t, v.y[0,:],'-', label='r(t)') 
-# plt.plot(v.t, v.y[2,:],'-', label='r(t)')
-# plt.xlabel("x")
-# plt.ylabel("y")
-# plt.show()
+
+plt.figure(figsize=(40,20))
+for y in range(len(v.y)):
+    plt.subplot(4, 8, y + 1)
+    plt.plot(v.t, v.y[y],'-') 
+    plt.title(f'y{y+1}')
+    plt.xlabel("x")
+    plt.ylabel("y")
+plt.savefig("E:\\1\\figure.png")
+
+
+df = pd.DataFrame(data=np.transpose(v.y), columns=[f"y{i + 1}" for i in range(len(v.y))])   #create the table
+df.insert(0, "t", v.t)    #add times column
+df.to_csv("E:\\1\\output.csv", index=False)   #save output
+
+
+#to read from the csv output file
+#df = pd.read_csv("output.csv") 
