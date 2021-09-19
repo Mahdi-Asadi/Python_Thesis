@@ -3,7 +3,7 @@ from scipy import linalg
 import numpy as np
 import re
 import matplotlib.pyplot as plt
-f_in = "E:\\1\\JC_Model_Heisenberg_Mixed.txt" #! address file for input
+f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" #! address file for input
 f1 = open(f_in,"r+")   #! open data file
 f_out_S = "E:\\1\\S_L_C.txt" #! Von-Neuman entropy address file for output
 f2 = open(f_out_S,"w+") #! open output file
@@ -49,7 +49,7 @@ for i in range(m):
     c_i.append((rho[17]+rho[27]))
     c_i.append((rho[20]+rho[30]))
     c_i.append((rho[21]+rho[31]))
-    print("c_i = ",c_i)
+    # print("c_i = ",c_i)
 #     c_y = []
 #     while i < 9: #! convert to complex number
 #         a = float(0)
@@ -83,14 +83,14 @@ for i in range(m):
 #     #? ----------------------------------------------------------------------------  
 #     #? ----------------------------------------------------------------------------
   
-# # print(s_list)
-# plt.plot(t,s_list,label = "Von Neuman Entropy")
-# plt.plot(t,l_list,label = "Linear Entropy")
-# plt.plot(t,c_list,label = "Concurrence")
-# plt.legend()
-# plt.xlabel("T")
-# plt.ylabel("Entanglement Measure")
-# plt.show()
+# print(s_list)
+plt.plot(t,s_list,label = "Von Neuman Entropy")
+plt.plot(t,l_list,label = "Linear Entropy")
+plt.plot(t,c_list,label = "Concurrence")
+plt.legend()
+plt.xlabel("T")
+plt.ylabel("Entanglement Measure")
+plt.show()
 
     #? ----------------------------------------------------------------------------
 

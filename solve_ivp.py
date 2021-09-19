@@ -15,14 +15,14 @@ def du_dx(x,y):
     dydx_1=  A*y[1]+g*C*y[3]
     dydx_2= -A*y[0]-g*C*y[2]
     dydx_3=  B*y[3]+g*C*y[1]
-    dydx_4= -B*y[2]-g*C*y[0]  
+    dydx_4= -B*y[2]-g*C*y[0]   
     return dydx_1,dydx_2,dydx_3,dydx_4
 
 y_0 = [1/np.sqrt(2),0,1/np.sqrt(2),0] # initial value
 # print("y_0 = ",y_0)
-m = 1000
+m = 10000
 ti = 0
-tf = 30
+tf = 10
 h = tf/m
 tspan = np.arange(ti,tf,h)
 print(h)
@@ -47,7 +47,7 @@ v = solve_ivp(du_dx,[0,30],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dyd
 # # --------------------------
 # # print in file 
 count = 0
-while count<1000:
+while count<10000:
     y_i = v.y[:,count]
     f2.write(str(v.t[count]))
     f2.write("     ")

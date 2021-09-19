@@ -36,60 +36,70 @@ for i in range(m):
     rho = rho_f
     #? ----------------------------------------------------------------------------
     i = 0
-    c_y = []
+    c_rho = []
     while i < 32: #! convert to complex number
         a = float(rho[i])
         b = float(rho[i+1])
         d = complex(a,b)
-        c_y = c_y + [d]
+        c_rho = c_rho + [d]
         i = i + 2
-    # print(c_y)
-    rho_con = np.array(c_y)
-    rho1 = rho_con.reshape(4,4)
+    # print(c_rho)
     # print(rho1)
     #? ----------------------------------------------------------------------------
-    #! Von-Neuman Entropy
-    c_1 = rho1[0,0] + rho1[1,1]
-    # print(rho[5]+rho[16])
-    c_2 = rho1[0,2] + rho1[1,3]
-    c_3 = rho1[2,0] + rho1[3,1]
-    c_4 = rho1[2,2] + rho1[3,3]
-    c_1 = np.real(c_1)
-    c_2 = np.real(c_2)
-    c_3 = np.real(c_3)
-    c_4 = np.real(c_4)
-    # print("c_1 = ",c_1,"\nc_2 = ",c_2,"\nc_3 = ",c_3,"\nc_4 = ",c_4,)  
-    landa_1 = 0.5*(c_1 + c_4 + np.sqrt((c_1 * c_1) + (4*c_2*c_3) - (2*c_1*c_4) + (c_4 * c_4)))
-    landa_2 = 0.5*(c_1 + c_4 - np.sqrt((c_1 * c_1) + (4*c_2*c_3) - (2*c_1*c_4) + (c_4 * c_4))) 
-    S = -(landa_1 * np.log2(landa_1)) - (landa_2 * np.log2(landa_2)) 
+    # convert to 4*4
+    rho_arr = np.array(c_rho) # convert to array 1D
+    rho = rho_arr.reshape(4,4) # convert to 4*4
+    rho_2 = np.dot(rho,rho)
+    #? ----------------------------------------------------------------------------
+    #! Von-Neuman Entropy 
+    rho_val,rho_vec = linalg.eig(rho) 
+    # print(rho_val)
+    rho_real = np.real(rho_val) 
+    # print(rho_real)
+    rho_list = list(rho_real)
+    # # print(rho_list)
+    for i in rho_list:
+        if i==0:
+            rho_list.remove(i)
+    rho_real = np.array(rho_list)
+    # print(rho_real)
+    for i in rho_real:
+        if i==0:
+            print(rho_real)
+    S = 0
+    for i in rho_real:
+        S = S-(i * np.log2(i))
     s_list.append(S)
     S = str(S)
-    # f2.write(S)  #! write in output file
-    # f2.write("\n")
-    #? ----------------------------------------------------------------------------
-    #! Linear Entropy and Concurrence
-    L = 2 * (1 - ((c_1*c_1) + (2*c_2*c_3) + (c_4 * c_4)))
-    l_list.append(L)
-    # Concurrence = np.sqrt(L)
-    # c_list.append(Concurrence)
-    L = str(L)
-    # Concurrence = str(Concurrence)
-    f2.write(S)
-    f2.write("     ")
-    f2.write(str(landa_1))
-    f2.write("     ")
-    f2.write(str(landa_2))
-    f2.write("     ")
-    f2.write(L)
-    # f2.write("     ")
-    # f2.write(Concurrence)
+    f2.write(S)  #! write in output file
     f2.write("\n")
-    #? ----------------------------------------------------------------------------  
     #? ----------------------------------------------------------------------------
+#     # ! Linear Entropy and Concurrence
+    L = 2 * (1 - (np.trace(rho_2)))
+    l_list.append(L)
+
+#     # Concurrence = np.sqrt(L)
+#     # c_list.append(Concurrence)
+
+#     L = str(L)
+#     # Concurrence = str(Concurrence)
+
+#     f2.write(S)
+#     f2.write("     ")
+#     # f2.write(str(landa_1))
+#     # f2.write("     ")
+#     # f2.write(str(landa_2))
+#     # f2.write("     ")
+#     f2.write(L)
+#     # f2.write("     ")
+#     # f2.write(Concurrence)
+#     f2.write("\n")
+#     #? ----------------------------------------------------------------------------  
+#     #? ----------------------------------------------------------------------------
   
-# print(s_list)
+# # print(s_list)
 plt.plot(t,s_list,label = "Von Neuman Entropy")
-plt.plot(t,l_list,label = "Linear Entropy")
+# plt.plot(t,l_list,label = "Linear Entropy")
 # plt.plot(t,c_list,label = "Concurrence")
 plt.legend(title = "g = 0.2",loc = "upper right")
 plt.xlabel("T")

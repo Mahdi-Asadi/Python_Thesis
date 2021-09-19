@@ -3,7 +3,7 @@ from scipy import linalg
 import numpy as np
 import re
 import matplotlib.pyplot as plt
-f_in = "E:\\1\\JC_Model_for rho_Pure.txt" #! address file for input
+f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" #! address file for input
 f1 = open(f_in,"r+")   #! open data file
 f_out_S = "E:\\1\\S_L_C.txt" #! Von-Neuman entropy address file for output
 f2 = open(f_out_S,"w+") #! open output file

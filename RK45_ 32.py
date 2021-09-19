@@ -63,8 +63,7 @@ def dy_dx(x,y):
         dydx_31=  0
         return [dydx_24,dydx_25,dydx_26,dydx_27,dydx_28,dydx_29,dydx_30,dydx_31]
     return dy_dx1,dy_dx2,dy_dx3,dy_dx4
-y_0 = [0.25,0,0,0,0,0,0,0,0,0,0.25,0,0,0,\
-        0,0,0,0,0,0,0.25,0,0,0,0,0,0,0,0,0,0.25,0] # initial value
+y_0 = [1/np.sqrt(2),0,1/np.sqrt(2),0] # initial value
 # print("y_0 = ",y_0)
 m = 1000
 ti = 0
@@ -72,7 +71,7 @@ tf = 30
 h = tf/m
 tspan = np.arange(ti,tf,h)
 print(h)
-v = RK45(dy_dx,[0,30],y0 = y_0,t_bound=30,t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
+v = RK45(dy_dx,[0,30],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
 # print(type(v))
 # print(v.t)
 # print("v.t[0] = ",v.t[0])

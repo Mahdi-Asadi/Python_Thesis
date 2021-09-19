@@ -10,5 +10,7 @@ rho = np.array([[0.08,0.06,0.05,0.03],[0.06,0.29,0.13,0.16]
                ,[0.05,0.13,0.21,0.07],[0.03,0.16,0.07,0.42]])
 rho_2 = np.dot(rho,rho)
 tr_rho_2 = np.trace(rho_2)
+tr_rho_2_a = rho[0,0]+rho[1,1]+rho[2,2]+rho[3,3]
+print(tr_rho_2_a)
 print("rho_2 = \n",rho_2)
 print("tr_rho_2 = \n", tr_rho_2)

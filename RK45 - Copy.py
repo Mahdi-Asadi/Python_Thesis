@@ -26,9 +26,12 @@ tf = 30
 h = tf/m
 tspan = np.arange(ti,tf,h)
 print(h)
-v = RK45(du_dx,t0 =0,y0 = y_0,t_bound=30,first_step = 0.01,max_step=0.04) # 4 answer of dydx_1,...,dydx_4
+for i in tspan:
+    print(i)
+    v = RK45(du_dx,t0 =i,y0 = y_0,t_bound=i) # 4 answer of dydx_1,...,dydx_4
+    print(v.y[0:])
 # print(type(v))
-print(v.y[0:])
+
 # print("v.t[0] = ",v.t[0])
 # print(len(v.t))
 # print("------------------")
@@ -46,18 +49,18 @@ print(v.y[0:])
 # print("------------------")
 # # --------------------------
 # # print in file 
-count = 0
-while count<1000:
-    y_i = v.y[:,count]
-    f2.write(str(v.t[count]))
-    f2.write("     ")
-    for i in y_i:
-        i = round(i,4)
-        i = str(i)
-        f2.write(i)
-        f2.write(len(i)*" ")
-    f2.write("\n")
-    count = count+1
+# count = 0
+# while count<1000:
+#     y_i = v.y[:,count]
+#     f2.write(str(v.t[count]))
+#     f2.write("     ")
+#     for i in y_i:
+#         i = round(i,4)
+#         i = str(i)
+#         f2.write(i)
+#         f2.write(len(i)*" ")
+#     f2.write("\n")
+#     count = count+1
 
 # # y_prime = u_s[:,1]
 # # print(y_prime)
