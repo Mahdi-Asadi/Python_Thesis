@@ -4,7 +4,7 @@ from math import sqrt
 import matplotlib.pyplot as plt
 import re
 #? --------------------------------------------------------------------------------
-f_in = "E:\\1\\Rabi_Model_for rho_Mixed.txt" # address file for input
+f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
@@ -53,8 +53,8 @@ for i in range(m):
     # print("_3_ = ",_3_)
     #? ----------------------------------------------------------------------------
     # calculate eigenvalue and eigenvector
-    rho_val,rho_vec = linalg.eig(Xi) 
-    # print("y Eigenvalue = ",y_value)
+    rho_val,rho_vec = linalg.eig(rho) 
+    # print("y Eigenvalue = ",rho_val)
     # print ("y Eigenvector = ",y_vector)
     #? ----------------------------------------------------------------------------
     # convert to list and real number
@@ -66,7 +66,7 @@ for i in range(m):
         v = round(i,4)
         rho_val_real.append(v)
     rho_val_list = rho_val_real
-    # print("rho_value_list = ",rho_value_list)
+    print("rho_value_list = ",rho_val_list)
     # print("rho_value_real = ",rho_value_real)
     #? ----------------------------------------------------------------------------
     # sort of max to min

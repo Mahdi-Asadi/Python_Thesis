@@ -6,9 +6,9 @@ from scipy.integrate import solve_ivp
 def dy_dx(x,y):
     wa=1      # atomic frequency  
     wp=0.6    # field frequency
-    g=0.6    # coupling strength 
-    n_p = 1     # number of photons
-    C = g*(np.sqrt(2))    
+    g=0.2    # coupling strength 
+    n_p = 5     # number of photons
+    C = g*(np.sqrt(5))    
     dydx_0= 0
     dydx_1= 0
     dydx_2= -C*y[5]-wp*y[3]
@@ -41,24 +41,20 @@ def dy_dx(x,y):
     dydx_29= +C*y[26]-wp*y[28]
     dydx_30=  0
     dydx_31=  0
-    return [dydx_0,dydx_1,dydx_2,dydx_3,dydx_4,dydx_5,dydx_6,\
-                dydx_7,dydx_8,dydx_9,dydx_10,dydx_11,dydx_12,\
-                dydx_13,dydx_14,dydx_15,dydx_16,dydx_17,\
-                dydx_18,dydx_19,dydx_20,dydx_21,dydx_22,\
-                dydx_23,dydx_24,dydx_25,dydx_26,dydx_27,\
-                dydx_28,dydx_29,dydx_30,dydx_31]
+    return [dydx_0,dydx_1,dydx_2,dydx_3,dydx_4,dydx_5,dydx_6,dydx_7,dydx_8,dydx_9,dydx_10,dydx_11,dydx_12,dydx_13,dydx_14,dydx_15,dydx_16,dydx_17,dydx_18,dydx_19,dydx_20,dydx_21,dydx_22,dydx_23,dydx_24,dydx_25,dydx_26,dydx_27,dydx_28,dydx_29,dydx_30,dydx_31]
 
 
 
-y_0 = [0.08,0,0.06,0,0.05,0,0.03,0,0.06,0,0.29,0,0.13,0,0.16,0,0.05,0,0.13,0,0.21,0,0.07,0,0.03,0,0.16,0,0.07,0,0.42,0]# initial value
+y_0 = [0.75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0.25,0,0,0,0,0,0,0,0,0,0,0]# initial value
 
 m = 1000
 ti = 0
-tf = 5
+tf = 20
 h = tf/m
 tspan = np.arange(ti,tf,h)
 
-v = solve_ivp(dy_dx,[0,5],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
+v = solve_ivp(dy_dx,[0,20],y_0,"RK45",t_eval=tspan) # 4 answer of dydx_1,...,dydx_4
 
 plt.figure(figsize=(40,20))
 for y in range(len(v.y)):

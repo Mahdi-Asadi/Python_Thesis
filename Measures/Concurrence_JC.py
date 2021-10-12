@@ -4,7 +4,7 @@ from math import sqrt
 import matplotlib.pyplot as plt
 import re
 #? --------------------------------------------------------------------------------
-f_in = "E:\\1\\JC_Model_Rho_Mixed.txt" # address file for input
+f_in = "E:\\1\\LE300.txt" # address file for input
 f1 = open(f_in,"r+")   # open data file
 f_out = "E:\\1\\Concurence.txt" # address file for output
 f2 = open(f_out,"w+") # open output file
@@ -25,13 +25,15 @@ for i in range(m):
         x = re.sub(" ", "", i)
         rho.append(x)
     rho.pop(0) # delete first column
-    rho.pop(32)# delete last column
+    rho.pop(8)# delete last column
+    print(rho)
+    # print(i)
     # print("rho = ", rho)
     #? ----------------------------------------------------------------------------
     # convert to complex number
     i = 0
     c_rho = []
-    while i < 32:
+    while i < 8:
         # print("i = ",i)
         a = float(rho[i])
         b = float(rho[i+1])
@@ -41,7 +43,8 @@ for i in range(m):
     #? ----------------------------------------------------------------------------
     # convert to 4*4
     rho_arr = np.array(c_rho) # convert to array 1D
-    rho = rho_arr.reshape(4,4) # convert to 4*4
+    print(rho_arr)
+    rho = rho_arr.reshape(2,2) # convert to 4*4
     rho_2 = np.dot(rho,rho)
     tr_rho_2 = np.trace(rho_2)
     # y_array_reshape_real = np.real(y_array_reshape) # convert to real matrix
@@ -110,7 +113,7 @@ for i in range(m):
 f1.close()
 f2.close()
 plt.plot(t,C_list)
-plt.legend(title = "g = 0.2\n n = 5",loc = "upper right")
+plt.legend(title = "g = 0.5\n n = 5",loc = "upper right")
 plt.xlabel("T")
 plt.ylabel("Concurence")
 plt.title("Concurence")
